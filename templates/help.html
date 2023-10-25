@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>帮助</title>
+</head>
+<body>
+    <h1>BW Cli 工具使用帮助</h1>
+    <h2>BW Cli tool usage help</h2>
+    <h2>
+        <a href="https://bitwarden.com/help/cli/">
+            详细信息可查看官方文档
+        </a>
+    </h2>
+    <h2>
+        <a href="https://bitwarden.com/help/cli/">
+            Detailed information can be found in the official documentation
+        </a>
+    </h2>
+    {% if Code != 200 %}
+        <h2>工具发生错误，请检查，错误信息如下：</h2>
+        <h3>An error occurred in the tool, please check. The error message is as follows:</h3>
+        <pre>{{ Message }}</pre>
+    {% else %}
+        <h2>官方帮助信息</h2>
+        <h3>Official help information</h3>
+        <pre>{{ Message }}</pre>
+    {% endif %}
+
+
+</body>
+</html>
