@@ -18,9 +18,8 @@ async def root(request: Request):
         return templates.TemplateResponse(name="help.html", context=response)
     else:
         response["Message"] = {
-            "official_documentation_zh": "详细信息可查看官方文档（https://bitwarden.com/help/cli/）",
+            "official_documentation_zh": "关于 BW 使用的详细信息可查看官方文档（https://bitwarden.com/help/cli/）",
             "official_documentation_en":
-                "Detailed information can be found in the official documentation(https://bitwarden.com/help/cli/)",
-            "official_information": response["Message"]
+                "How use of BW, please view the official documentation(https://bitwarden.com/help/cli/)",
         }
         return JSONResponse(content=response, status_code=response["Code"])
