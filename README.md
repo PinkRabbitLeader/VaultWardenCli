@@ -19,3 +19,36 @@ pip install -r requirements.txt
 ```shell
 python -m uvicorn main:app --host 主机地址 --port 端口
 ```
+
+## 使用示例
+
+1. 获取帮助信息
+
+    ```python
+   import requests
+    
+   if (response := requests.get("http://127.0.0.1:8000")).status_code == 200:
+      # TODO: 完善在获取帮助成功后的操作
+      print(response.json())
+   else:
+     # TODO: 完善在获取帮助失败后的操作
+     print(response.json())
+    ```
+
+2. 执行工具相关命令，例如登录：
+   
+   > 注意：如果是自托管服务，还需要先设置服务器再进行登录
+   
+   ```python
+   import requests
+    
+   # 例如：登录账号，email为test，密码为test的用户
+   if (response := requests.post("http://127.0.0.1:8000/bw/", json={"commands": "login test test"})).status_code == 200:
+      # TODO: 完善在获取帮助成功后的操作
+      print(response.json())
+   else:
+     # TODO: 完善在获取帮助失败后的操作
+     print(response.json())
+    ```
+   
+3. 其余接口可查看官方文档(https://bitwarden.com/help/cli)

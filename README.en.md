@@ -19,3 +19,36 @@ pip install -r requirements.txt
 ```shell
 python -m uvicorn main:app --host host address --port port
 ```
+
+## Usage example
+
+1. Get help information
+
+    ```python
+   import requests
+    
+   if (response := requests.get("http://127.0.0.1:8000")).status_code == 200:
+      # TODO: Improve the operation after successfully obtaining help
+      print(response.json())
+   else:
+     # TODO: Improve the operation after failure to obtain help
+     print(response.json())
+    ```
+
+2. Execute tool-related commands, such as login
+   
+   > Note: If it is a self-hosted service, you need to set up the server before logging in.
+   
+   ```python
+   import requests
+    
+   # For example: a user who logs in with an account whose email is test and whose password is test.
+   if (response := requests.post("http://127.0.0.1:8000/bw/", json={"commands": "login test test"})).status_code == 200:
+      # TODO: Improve the operation after successfully obtaining help
+      print(response.json())
+   else:
+     # TODO: Improve the operation after failure to obtain help
+     print(response.json())
+    ```
+   
+3. For other interfaces, please view official documents(https://bitwarden.com/help/cli)
