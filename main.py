@@ -3,6 +3,7 @@ from apscheduler.triggers.cron import CronTrigger
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
 
 from utils import get_bw, run_commands, update_bw
 
@@ -12,6 +13,10 @@ templates = Jinja2Templates(directory="templates")
 # 创建一个后台调度器
 scheduler = BackgroundScheduler()
 scheduler.start()
+
+
+class BWCommand(BaseModel):
+    commands: str
 
 
 # 定义每日凌晨执行的任务函数
@@ -39,3 +44,10 @@ async def root(request: Request):
                 "How use of BW, please view the official documentation(https://bitwarden.com/help/cli/)",
         }
         return JSONResponse(content=response, status_code=response["Code"])
+
+
+@app.post("/bw/")
+def run_bw_command(command_data: BWCommand):
+    command = command_data.commands
+    response = run_commands([bw, *command.split()])
+    return JSONResponse(content=response, status_code=response["Code"])

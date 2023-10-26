@@ -55,7 +55,7 @@ def download_bw_tool(bw_path: str, bw_name: str) -> str:
         raise DownloadError(f'BW 工具下载失败, 原错误：{response.content.decode("utf-8")}')
 
 
-def run_commands(commands: str) -> dict:
+def run_commands(commands: str or list) -> dict:
     process = subprocess.Popen(commands, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True,
                                universal_newlines=True)
     stdout, stderr = process.communicate()
