@@ -122,3 +122,5 @@ def update_bw() -> None:
                 os.remove(os.path.join(_bw_path, latest_file))
                 os.remove(_bw_whole_path)
                 _bw = download_bw_tool(bw_name=_bw_name, bw_path=_bw_path)
+        else:
+            raise DownloadError(f'BW 工具下载失败，更新失败，原错误：{response.content.decode("utf-8")}')
